@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "147940501238",
+    "firebase_url": "https://registrodeusuariosconfirebases.firebaseio.com",
+    "project_id": "registrodeusuariosconfirebases",
+    "storage_bucket": "registrodeusuariosconfirebases.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:147940501238:android:420f79cdb9a664c8",
+        "android_client_info": {
+          "package_name": "com.example.registrodeusuariosconfirebases"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "147940501238-s5sa6d45941r3vbvbh552cov9h9k2tei.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.registrodeusuariosconfirebases",
+            "certificate_hash": "20618cbd0d278a01890d59b2f6c73f45d58df938"
+          }
+        },
+        {
+          "client_id": "147940501238-p2aiqtgt08jmqtp5m54271747v56gnds.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBZu5c03dTV7kdkyxvWuGcixBLxRC1h8x8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "147940501238-p2aiqtgt08jmqtp5m54271747v56gnds.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
