@@ -79,6 +79,8 @@ public class MainActivity extends AppCompatActivity {
                         if(task.isSuccessful())
                         {
                             Toast.makeText(MainActivity.this, "Se registro el usuario Correctamente...", Toast.LENGTH_SHORT).show();
+                            FirebaseUser user = firebaseAuth.getCurrentUser();
+                            user.sendEmailVerification();
                         }
                         else
                         {
@@ -126,9 +128,20 @@ public class MainActivity extends AppCompatActivity {
                 .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
+
+
+
                         if(task.isSuccessful())
-                        {
-                            Toast.makeText(MainActivity.this, "Bienvenido", Toast.LENGTH_SHORT).show();
+                        {   FirebaseUser user = firebaseAuth.getCurrentUser();
+                            if(!user.isEmailVerified() )
+                            {
+                                Toast.makeText(MainActivity.this, "usuario no verificado...acceda a su correo,,..", Toast.LENGTH_SHORT).show();
+                            }
+                            else
+                            {
+                                Toast.makeText(MainActivity.this, "Bienvenido", Toast.LENGTH_SHORT).show();
+                            }
+
                         }
                         else
                         {
@@ -138,7 +151,7 @@ public class MainActivity extends AppCompatActivity {
                             }
                             else
                             {
-                                Toast.makeText(MainActivity.this, "No se pudo registrar el usuario, intentelo nuevamente", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(MainActivity.this, "No se pudo acceder al usuario, intentelo nuevamente", Toast.LENGTH_SHORT).show();
                             }
 
                         }
