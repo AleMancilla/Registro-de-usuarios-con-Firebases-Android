@@ -12,6 +12,22 @@
         android:orientation="vertical">
 
         <EditText
+            android:id="@+id/editText_name_registro"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:hint="Nombre"
+            android:inputType="textPersonName" />
+
+        <EditText
+            android:id="@+id/editText_lastName_registro"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:inputType="textPersonName"
+            android:hint="Apellidos" />
+
+        <EditText
             android:id="@+id/editText_EmailRegistro"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
