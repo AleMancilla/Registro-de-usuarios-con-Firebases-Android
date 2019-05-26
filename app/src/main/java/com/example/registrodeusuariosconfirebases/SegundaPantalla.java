@@ -18,6 +18,8 @@ public class SegundaPantalla extends AppCompatActivity {
 
     private TextView textView_name, textView_email, textView_urlPhoto, textView_emailVerification, textView_uId;
 
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -49,7 +51,7 @@ public class SegundaPantalla extends AppCompatActivity {
             //textView_urlPhoto.setText(urlPhoto);
             textView_uId.setText(idUser);
 
-            
+
 
         }
 
