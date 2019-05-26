@@ -1,6 +1,7 @@
 package com.example.registrodeusuariosconfirebases;
 
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.nfc.Tag;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
@@ -25,6 +26,7 @@ public class MainActivity extends AppCompatActivity {
     ProgressDialog progresDialog;
 
     private FirebaseAuth firebaseAuth;
+    private FirebaseAuth.AuthStateListener listener;
 
     private EditText editText_user;
     private EditText editText_pass;
@@ -45,6 +47,24 @@ public class MainActivity extends AppCompatActivity {
 
         //barra de progreso
         progresDialog = new ProgressDialog(this);
+        listener = new FirebaseAuth.AuthStateListener() {
+            @Override
+            public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
+                FirebaseUser user = firebaseAuth.getCurrentUser();
+                if (user == null )
+                {
+                    //no esta logueado
+                    Toast.makeText(MainActivity.this, "EL USUARIO NO ESTA LOGUEADO", Toast.LENGTH_SHORT).show();
+                }
+                else
+                {
+                    //esta logueado
+                    Toast.makeText(MainActivity.this, "EL USUARIO ESTA LOGUEADO", Toast.LENGTH_SHORT).show();
+                    Intent intent = new Intent(getApplication() , SegundaPantalla.class);
+                    startActivity(intent);
+                }
+            }
+        };
 
     }
 
@@ -140,6 +160,8 @@ public class MainActivity extends AppCompatActivity {
                             else
                             {
                                 Toast.makeText(MainActivity.this, "Bienvenido", Toast.LENGTH_SHORT).show();
+                                Intent intent = new Intent(getApplication() , SegundaPantalla.class);
+                                startActivity(intent);
                             }
 
                         }
@@ -163,6 +185,15 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onStart() {
         super.onStart();
+        firebaseAuth.addAuthStateListener(listener);
+    }
 
+    @Override
+    protected void onStop() {
+        super.onStop();
+        if(listener!=null)
+        {
+            firebaseAuth.removeAuthStateListener(listener);
+        }
     }
 }
