@@ -2,12 +2,10 @@ package com.example.registrodeusuariosconfirebases;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
-import android.nfc.Tag;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.TextUtils;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -38,9 +36,9 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        editText_user = findViewById(R.id.editText_Email);
-        editText_pass = findViewById(R.id.editText_contrasenia);
-        button_registrar = findViewById(R.id.button_registro);
+        editText_user = findViewById(R.id.editText_EmailRegistro);
+        editText_pass = findViewById(R.id.editText_contraseniaRegistro);
+        button_registrar = findViewById(R.id.button_registroRegistro);
         button_login = findViewById(R.id.button_login);
 
         firebaseAuth = FirebaseAuth.getInstance();
@@ -70,54 +68,8 @@ public class MainActivity extends AppCompatActivity {
 
     public void registrarUsuario(View v)
     {
-        // el trim es para eliminar espacios que tengamos al principio y al final
-        String email = editText_user.getText().toString().trim();
-        String pass = editText_pass.getText().toString().trim();
-
-        //verificamos que las cajas de texto no esten vacias
-        if(TextUtils.isEmpty(email))
-        {
-            Toast.makeText(this, "Debe colocar un Email en la caja de Email.", Toast.LENGTH_SHORT).show();
-            return;
-        }
-        if(TextUtils.isEmpty(pass))
-        {
-            Toast.makeText(this, "Debe colocar una Contraseña en la caja de contraseña.", Toast.LENGTH_SHORT).show();
-            return;
-        }
-
-        //en caso de que se lleno las cajas de usuario y contrasenia
-        //se mostrara la barra de progreso
-        progresDialog.setMessage("Realizando registro en linea...");
-        progresDialog.show();
-
-        //creamos a un nuevo usuario
-        firebaseAuth.createUserWithEmailAndPassword(email,pass)
-                .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
-                    @Override
-                    public void onComplete(@NonNull Task<AuthResult> task) {
-                        if(task.isSuccessful())
-                        {
-                            Toast.makeText(MainActivity.this, "Se registro el usuario Correctamente...", Toast.LENGTH_SHORT).show();
-                            FirebaseUser user = firebaseAuth.getCurrentUser();
-                            user.sendEmailVerification();
-                        }
-                        else
-                        {
-                            if(task.getException() instanceof FirebaseAuthUserCollisionException)//si se presenta una colicion
-                            {
-                                Toast.makeText(MainActivity.this, "El usuario que intenta registrar ya se encuentra registrado", Toast.LENGTH_SHORT).show();
-                            }
-                            else
-                            {
-                                Toast.makeText(MainActivity.this, "No se pudo registrar el usuario, intentelo nuevamente", Toast.LENGTH_SHORT).show();
-                            }
-
-                        }
-                        progresDialog.dismiss();
-                    }
-                });
-
+        Intent intent = new Intent(getApplication(), Registro.class);
+        startActivity(intent);
     }
 
     public void login (View v)

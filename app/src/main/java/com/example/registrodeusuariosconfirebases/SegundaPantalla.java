@@ -49,6 +49,8 @@ public class SegundaPantalla extends AppCompatActivity {
             //textView_urlPhoto.setText(urlPhoto);
             textView_uId.setText(idUser);
 
+            
+
         }
 
     }
