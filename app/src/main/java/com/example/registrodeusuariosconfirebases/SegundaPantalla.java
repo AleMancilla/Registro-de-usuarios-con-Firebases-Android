@@ -49,7 +49,7 @@ public class SegundaPantalla extends AppCompatActivity {
         if(user != null)
         {
             //String name = user.getDisplayName();
-            final String email = user.getEmail();
+            final String uid = user.getUid();
             //String idUser = user.getUid();
 
 
@@ -57,7 +57,7 @@ public class SegundaPantalla extends AppCompatActivity {
             //leendo la base de datos
 
 
-            db.collection("Usuarios").whereEqualTo("Email", email)
+            db.collection("Usuarios").whereEqualTo("IDUser", uid)
             .get()
                     .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                         @Override
@@ -65,7 +65,7 @@ public class SegundaPantalla extends AppCompatActivity {
                             if(task.isSuccessful())
                             {
                                 for (QueryDocumentSnapshot document : task.getResult()) {
-                                    if(document.getData().get("Email").toString().equals(user.getEmail()))
+                                    if(document.getData().get("IDUser").toString().equals(uid))
                                     {
                                         textView_name.setText(document.getData().get("Nombre").toString());
                                         textView_email.setText(document.getData().get("Email").toString());
@@ -76,7 +76,7 @@ public class SegundaPantalla extends AppCompatActivity {
                                     Log.d("Aleman", document.getId() + " => " + document.getData());
                                 }
 
-                                Toast.makeText(getApplication(), "EL EMAIL BUSCADO ES "+email, Toast.LENGTH_SHORT).show();
+                                //Toast.makeText(getApplication(), "EL EMAIL BUSCADO ES "+email, Toast.LENGTH_SHORT).show();
 
                             }
                             else
